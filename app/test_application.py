@@ -4,6 +4,8 @@ from pathlib import Path
 
 from application import application
 
+SERVER_URL = "http://lucy-ece444-pra5-env.eba-zbcjgkt6.ca-central-1.elasticbeanstalk.com/predict"
+
 @pytest.fixture
 def client():
     with application.app_context():
@@ -15,7 +17,7 @@ def test_true_news_1(client):
     }
 
     prediction = client.post(
-        "/predict",
+        SERVER_URL,
         data=json.dumps(input_news),
         content_type='application/json'
     )
@@ -30,7 +32,7 @@ def test_true_news_2(client):
     }
 
     prediction = client.post(
-        "/predict",
+        SERVER_URL,
         data=json.dumps(input_news),
         content_type='application/json'
     )
@@ -45,7 +47,7 @@ def test_fake_news_1(client):
     }
 
     prediction = client.post(
-        "/predict",
+        SERVER_URL,
         data=json.dumps(input_news),
         content_type='application/json'
     )
@@ -60,7 +62,7 @@ def test_fake_news_2(client):
     }
 
     prediction = client.post(
-        "/predict",
+        SERVER_URL,
         data=json.dumps(input_news),
         content_type='application/json'
     )
