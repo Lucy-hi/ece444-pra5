@@ -6,10 +6,6 @@ import json
 
 application = Flask(__name__)
 
-@application.route("/")
-def index():
-    return "Your Flask App Works! V1.0"
-
 def load_model(input_news):
     ###### model loading #####
     loaded_model = None
