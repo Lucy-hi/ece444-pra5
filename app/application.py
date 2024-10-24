@@ -27,5 +27,26 @@ def load_model(input_news):
     # output will be 'FAKE' if fake, 'REAL' if real
     return prediction
 
+@application.route("/")
+def index():
+    return "Your Flask App Works! V1.0"
+
+@application.route('/predict', methods=['POST'])
+def predict():
+    # Get text input from the request
+    input_news = request.json.get('text', '')
+
+    if input_news:
+        # Get prediction from the model
+        prediction = load_model(input_news)
+        return jsonify({
+            "input_news": input_news,
+            "prediction": prediction
+        })
+    else:
+        return jsonify({
+            "message": "No input text provided"
+        }), 400
+
 if __name__ == "__main__":
     application.run()
